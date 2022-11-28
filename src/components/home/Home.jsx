@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 import './style.scss'
 const Home = () => {
 const lista=["pizzas juan","pizza picolo","pizza carlota","carlos pizza","pizza picolo",
@@ -14,7 +15,7 @@ const x=  Math.floor(Math.random() * lista.length);
   console.log(x);
   const y= lista.at(x)
   console.log(y);
-        
+        Swal.fire('tu restaurante sera',`${y}`,'info')
        }
        
         
