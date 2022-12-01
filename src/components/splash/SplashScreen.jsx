@@ -1,19 +1,21 @@
 import React from "react";
-import "./style.scss";
+import "./splash.scss";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 const SplashScreen = () => {
   const navigate = useNavigate();
   const handlePage = () => {
-    navigate();
+    navigate("/home");
   };
   return (
     <>
       <div className="splash">
         <section className="splash__main">
           <button onClick={handlePage} className="splash__button">
-            {/* <img src={image1} alt="" className="splash__image1" /> */}
+            <img src={logo} alt="" className="splash__image1" />
           </button>
+          <h1 className="splash__title">Que comeremos hoy?</h1>
         </section>
       </div>
     </>

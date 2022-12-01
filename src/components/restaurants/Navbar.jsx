@@ -1,22 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo.jpg'
-import login from '../../assets/user.png'
-import './restaurants.scss'
+import logo from "../../assets/logo.png";
+import login from "../../assets/user.png";
+import "./restaurants.scss";
 
 const Navbar = () => {
   return (
     <div className="navbar">
       <section className="navbar__section">
         <figure>
-          <img src={logo} alt="" className="navbar__img"/>
+          <img src={logo} alt="" className="navbar__img" />
         </figure>
       </section>
 
       <section className="navbar__section">
-        <Link to="/home" className="navbar__link">Inicio</Link>
+        <Link to="/home" className="navbar__link">
+          Inicio
+        </Link>
         <Link className="navbar__link">Favoritos</Link>
-        <Link> <img src={login} alt="" className="navbar__img" /></Link>
+        <Link>
+          {" "}
+          <img src={login} alt="" className="navbar__img" />
+        </Link>
       </section>
     </div>
   );
