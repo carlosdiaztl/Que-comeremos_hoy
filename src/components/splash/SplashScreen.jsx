@@ -15,7 +15,7 @@ const SplashScreen = () => {
           <button onClick={handlePage} className="splash__button">
             <img src={logo} alt="" className="splash__image1" />
           </button>
-          <h1 className="splash__title">Que comeremos hoy?</h1>
+          <h1 className="splash__title">¿Qué comeremos hoy?</h1>
         </section>
       </div>
     </>

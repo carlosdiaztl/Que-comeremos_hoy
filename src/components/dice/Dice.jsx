@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import "./style.scss";
+import "./dice.scss";
 
 const Dice = () => {
   const lista = [
