@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import './style.scss'
 const Home = () => {
@@ -6,7 +8,16 @@ const lista=["pizzas juan","pizza picolo","pizza carlota","carlos pizza","pizza 
 "pizza dominos","pizza daikmaku"," pizza lauras", " kakos pizza"]
 const[dado, setDado]=useState(false)  
 
-
+const userStore = useSelector((store) => store.userStore);
+const navigate=useNavigate()
+  useEffect(() => {
+  console.log(userStore);
+  if (!userStore.name) {
+  
+    navigate('/login')
+    console.log(userStore.name);
+  }
+  }, [userStore])
   const changeDado=()=>{
     setDado(true);
     setTimeout(() => {
