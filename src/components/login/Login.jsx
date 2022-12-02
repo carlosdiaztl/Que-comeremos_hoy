@@ -7,23 +7,30 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionLoginAsync } from "../../redux/actions/userActions";
 
-const Login = () => {
+const Login = ({ isAuthentication }) => {
   const navigate=useNavigate()
   const dispatch=useDispatch()
 
   const userStore = useSelector((store) => store.userStore);
   useEffect(() => {
-  console.log(userStore);
-  if (!userStore.name) {
+    if (isAuthentication) {
+      navigate('/')
+      
+    }
+  }, [isAuthentication])
   
-    navigate('/login')
-    console.log(userStore.name);
-  }
-  else{
-    navigate('/')
+  // useEffect(() => {
+  // console.log(userStore);
+  // if (!userStore.name) {
+  
+  //   navigate('/login')
+  //   console.log(userStore.name);
+  // }
+  // else{
+  //   navigate('/')
 
-  }
-  }, [userStore])
+  // }
+  // }, [userStore])
 
 
 

@@ -1,13 +1,14 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, dataBase } from "../../Firebase/firebasecofi";
 import { userTypes } from "../types/userTypes";
 const collectionName="usuarios"
 const usuarioColletion=collection(dataBase,collectionName)
+
 export const actionRegisterAsync = ({
   email,
   password,
-  name,
+  displayName,
   avatar,
   phoneNumber,
 }) => {
@@ -17,22 +18,23 @@ export const actionRegisterAsync = ({
         console.log(user);
         const { accessToken } = user.auth.currentUser;
         await updateProfile(auth.currentUser, {
-          displayName: name,
+          displayName,
           photoURL: avatar,
           phoneNumber,
         });
         const { uid } =user.auth.currentUser;
         console.log(uid);
-        // const docRef=doc(dataBase,`usuarios/${uid}`)
-        // const docu= await getDoc(docRef)
-        // console.log(docRef);
-        // const dataFinal= docu.data()
-        // console.log(dataFinal);
-        // setDoc(docRef,{email:email,rol:"usuario",displayName:name,phoneNumber,photoURL: avatar})
+        const docRef=doc(dataBase,`usuarios/${uid}`)
+        const docu= await getDoc(docRef)
+        console.log(docRef);
+        const dataFinal= docu.data()
+        console.log(dataFinal);
+        setDoc(docRef,{email:email,rol:"usuario",displayName,phoneNumber,photoURL: avatar})
+        
         dispatch(
           actionRegisterSync({
             email,
-            name,
+            displayName,
             accessToken,
             photoURL: avatar,
             phoneNumber,
@@ -94,3 +96,18 @@ export const actionLoginSync = (user) => {
       payload: { ...user }
     }
   }
+  export const actionUserLogOutAsync=()=>{
+    return (dispatch)=>{
+      signOut(auth)
+      .then(()=>{
+        dispatch(actionUserLogOutSync())
+      })
+      .catch((error)=>{console.log(error);})
+    }
+  }
+
+const actionUserLogOutSync=()=>{
+  return{
+    type:userTypes.USER_LOGOUT,
+  }
+}
