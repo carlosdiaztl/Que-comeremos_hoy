@@ -37,6 +37,7 @@ useEffect(() => {
   //   console.log(userStore.name);
   // }
   // }, [userStore])
+ 
   useEffect(() => {
     if (!restaurantes.length) {
       disptach(actionGetrestaurantesAsync())
@@ -45,6 +46,8 @@ useEffect(() => {
    
    
   }, [restaurantes])
+ 
+console.log(restaurantes);
   useEffect(() => {
     console.log(userStore);
    
