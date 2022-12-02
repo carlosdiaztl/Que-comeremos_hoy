@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import Navbar from "./Navbar";
 import "./restaurants.scss";
+import favorites from "../../assets/favorito (1).png"
 
 const Restaurants = () => {
   return (
@@ -11,7 +12,7 @@ const Restaurants = () => {
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary">button favorites</Button>
         </Card.Body>
       </Card>
     </div>
