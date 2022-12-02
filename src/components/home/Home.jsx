@@ -5,25 +5,21 @@ const Home = () => {
 const lista=["pizzas juan","pizza picolo","pizza carlota","carlos pizza","pizza picolo",
 "pizza dominos","pizza daikmaku"," pizza lauras", " kakos pizza"]
 const[dado, setDado]=useState(false)  
-useEffect(() => {
-    if (dado) {
-        setTimeout(()=>{setDado(false)},2000)
-        
-       }
-       if (dado===false) {
-const x=  Math.floor(Math.random() * lista.length);
-  console.log(x);
-  const y= lista.at(x)
-  console.log(y);
-        Swal.fire('tu restaurante sera',`${y}`,'info')
-       }
-       
-        
 
-}, [dado])
 
   const changeDado=()=>{
-    setDado(true)
+    setDado(true);
+    setTimeout(() => {
+      const x = Math.floor(Math.random() * lista.length);
+      console.log(x);
+      const y = lista.at(x);
+      console.log(y);
+      Swal.fire("tu restaurante sera", `${y}`, "info");
+    }, 1000);
+
+    setTimeout(() => {
+      setDado(false);
+    }, 2000);
   
   }
   return ( 

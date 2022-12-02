@@ -14,7 +14,7 @@ const Navbar = () => {
       </section>
 
       <section className="navbar__section">
-        <Link to="/home" className="navbar__link">Inicio</Link>
+        <Link to="/" className="navbar__link">Inicio</Link>
         <Link className="navbar__link">Favoritos</Link>
         <Link> <img src={login} alt="" className="navbar__img" /></Link>
       </section>
