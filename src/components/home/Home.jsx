@@ -1,12 +1,59 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { actionGetrestaurantesAsync } from '../../redux/actions/restaurantsActions'
+import { actionLogout, actionUserLogOutAsync } from '../../redux/actions/userActions'
 import './style.scss'
-const Home = () => {
+const Home = ({ isAuthentication }) => {
 const lista=["pizzas juan","pizza picolo","pizza carlota","carlos pizza","pizza picolo",
 "pizza dominos","pizza daikmaku"," pizza lauras", " kakos pizza"]
 const[dado, setDado]=useState(false)  
+const [userFunctions,setUserFunctions]=useState(false)
+const disptach=useDispatch()
+const userStore = useSelector((store) => store.userStore);
+const {restaurantes}=useSelector((store)=>store.restaurantStore)
+const navigate=useNavigate()
+const logOut=()=>{
+  disptach(actionUserLogOutAsync())
+}
 
+useEffect(() => {
+  
+  if (isAuthentication) {
+    setUserFunctions(true)
+    
+  }else{
+    setUserFunctions(false)
+  }
+  
+}, [isAuthentication,userFunctions])
 
+  // useEffect(() => {
+  // console.log(userStore);
+  // if (!userStore.name) {
+  
+  //   navigate('/login')
+  //   console.log(userStore.name);
+  // }
+  // }, [userStore])
+ 
+  useEffect(() => {
+    if (!restaurantes.length) {
+      disptach(actionGetrestaurantesAsync())
+   console.log(restaurantes);
+    }
+   
+   
+  }, [restaurantes])
+ 
+console.log(restaurantes);
+  useEffect(() => {
+    console.log(userStore);
+   
+  }, [userStore])
+  
+  
   const changeDado=()=>{
     setDado(true);
     setTimeout(() => {
@@ -23,6 +70,7 @@ const[dado, setDado]=useState(false)
   
   }
   return ( 
+    <> 
     <div className="contenedor">
     {dado? <div   className={"dado"} >
       <div className="lado uno"></div>
@@ -40,7 +88,18 @@ const[dado, setDado]=useState(false)
       <div className="lado seis"></div>
     </div>}
    
-  </div> 
+  </div>
+   { isAuthentication?<button onClick={logOut}> salir</button>:""}
+   {isAuthentication && userStore.admin ?<div>
+   <button > Add restaurant</button>
+   <button > Edit restaurant</button> </div>:"" }
+   {isAuthentication && !userStore.admin ?<div>
+   <button > Favoritos</button>
+    </div>:"" }
+{isAuthentication?userStore.displayName:""}
+{isAuthentication?"":<Link to={'/login'} >Ingresar </Link>}
+    
+    </>
   )
 }
 

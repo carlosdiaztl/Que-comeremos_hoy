@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoFacebook from "../../assets/facebook (1).png";
 import logoGoogle from "../../assets/logotipo-de-google-glass.png";
 import { actionRegisterAsync } from "../../redux/actions/userActions";
 import "./register.scss";
 
-const Register = () => {
+const Register = ({ isAuthentication }) => {
+  const navigate=useNavigate()
   const dispatch=useDispatch()
   const userStore = useSelector((store) => store.userStore);
   const {register, handleSubmit, formState: { errors } } = useForm()
+  useEffect(() => {
+    if (isAuthentication) {
+      navigate('/')
+    }
+    }, [])
   useEffect(() => {
   console.log(userStore);
   }, [userStore])
@@ -18,7 +24,7 @@ const Register = () => {
   const sendInfo=(data)=>{
     console.log(data);
     const newUser = {
-      name: data.name + data.lastName,
+      displayName: data.name + data.lastName,
       email: data.email,
       password: data.password,
       avatar: "",
@@ -26,6 +32,8 @@ const Register = () => {
     };
     console.log(newUser);
     dispatch(actionRegisterAsync(newUser))
+    
+        navigate('/')
   }
   return (
     <div className="register">
