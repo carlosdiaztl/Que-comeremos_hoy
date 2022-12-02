@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.scss";
 import logoFacebook from "../../assets/facebook (1).png";
 import logoGoogle from "../../assets/logotipo-de-google-glass.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { actionLoginAsync } from "../../redux/actions/userActions";
 
 const Login = () => {
+  const userStore = useSelector((store) => store.userStore);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  useEffect(() => {
+    console.log(userStore);
+    if (!userStore.name) {
+  
+      navigate('/login')
+      console.log(userStore.name);
+    }
+    else{
+      navigate('/')
+  
+    }
+    }, [userStore])
+  
   const {register, handleSubmit, formState: { errors } } = useForm()
   const sendInfo=(data)=>{
     console.log(data);
+    dispatch(actionLoginAsync(data))
   }
   return (
     <div className="login">
