@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Dice from '../components/dice/Dice'
 import Home from '../components/home/Home'
 import Login from '../components/login/Login'
 import Register from '../components/register/Register'
 import Restaurants from '../components/restaurants/Restaurants'
+import SplashScreen from '../components/splash/SplashScreen'
 import { auth, dataBase } from '../Firebase/firebasecofi'
 import { actionLoginSync } from '../redux/actions/userActions'
 
@@ -82,8 +84,10 @@ const Router = () => {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home isAuthentication={isLoggedIn} />}/>
+    <Route path="/" element={<SplashScreen/>} />
+      <Route path='/Home' element={<Home isAuthentication={isLoggedIn} />}/>
       <Route path='/Login' element={<Login isAuthentication={isLoggedIn}/>}/>
+      <Route path="/Dice" element={<Dice />} />
       <Route path='/Register' element={<Register isAuthentication={isLoggedIn}/>}/>
       <Route path='/Restaurants' element={<Restaurants/>}/>
     </Routes>
