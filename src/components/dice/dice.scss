@@ -1,3 +1,48 @@
+$color-sesion: #f9943b;
+
+@mixin buttons($b) {
+  border: none;
+  border-radius: 20px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 2px 2px 2px 2px gray;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__buttonBack {
+    @include buttons(1);
+    background-color: $color-sesion;
+  }
+  &__img {
+    width: 30px;
+  }
+  &__section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  &__link {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: $color-sesion;
+    }
+  }
+}
+
 .contenedor {
   display: flex;
   justify-content: center;

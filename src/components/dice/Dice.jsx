@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "./dice.scss";
+import NavbarDice from "./NavbarDice";
 
 const Dice = () => {
   const lista = [
@@ -34,27 +35,30 @@ const Dice = () => {
     setDado(true);
   };
   return (
-    <div className="contenedor">
-      {dado ? (
-        <div className={"dado"}>
-          <div className="lado uno"></div>
-          <div className="lado dos"></div>
-          <div className="lado tres"></div>
-          <div className="lado cuatro"></div>
-          <div className="lado cinco"></div>
-          <div className="lado seis"></div>
-        </div>
-      ) : (
-        <div onClick={changeDado} className={"dados"}>
-          <div className="lado uno"></div>
-          <div className="lado dos"></div>
-          <div className="lado tres"></div>
-          <div className="lado cuatro"></div>
-          <div className="lado cinco"></div>
-          <div className="lado seis"></div>
-        </div>
-      )}
-    </div>
+    <>
+      <NavbarDice />
+      <div className="contenedor">
+        {dado ? (
+          <div className={"dado"}>
+            <div className="lado uno"></div>
+            <div className="lado dos"></div>
+            <div className="lado tres"></div>
+            <div className="lado cuatro"></div>
+            <div className="lado cinco"></div>
+            <div className="lado seis"></div>
+          </div>
+        ) : (
+          <div onClick={changeDado} className={"dados"}>
+            <div className="lado uno"></div>
+            <div className="lado dos"></div>
+            <div className="lado tres"></div>
+            <div className="lado cuatro"></div>
+            <div className="lado cinco"></div>
+            <div className="lado seis"></div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
